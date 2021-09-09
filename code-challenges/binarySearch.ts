@@ -9,16 +9,19 @@ function binarySearch(array, target) {
 }
 
 function binarySearchHelper(array, target, left, right) {
-  if (left > right) return -1
-  const middle = Math.floor((left + right) / 2)
-  const potentialMatch = array[middle]
-  if (target === potentialMatch) {
-    return middle
-  } else if (target < potentialMatch) {
-    return binarySearchHelper(array, target, left, middle - 1)
-  } else {
-    return binarySearchHelper(array, target, middle + 1, right)
+  while (left <= right) {
+    const middle = Math.floor((left + right) / 2)
+    const potentialMatch = array[middle]
+    if (target === potentialMatch) {
+      return middle
+    } else if (target < potentialMatch) {
+      right = middle - 1
+    } else {
+      left = middle + 1
+    }
   }
+
+  return -1
 }
 
 console.log(binarySearch([1, 2, 3, 4, 33, 56, 90, 100], 102))
