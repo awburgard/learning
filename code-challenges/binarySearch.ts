@@ -4,24 +4,18 @@ and an integer target, write a function to search target in nums.
 If target exists, then return its index. Otherwise, return -1.
  */
 
-function binarySearch(array, target) {
-  return binarySearchHelper(array, target, 0, array.length - 1)
-}
-
-function binarySearchHelper(array, target, left, right) {
-  while (left <= right) {
-    const middle = Math.floor((left + right) / 2)
-    const potentialMatch = array[middle]
-    if (target === potentialMatch) {
-      return middle
-    } else if (target < potentialMatch) {
-      right = middle - 1
+function binarySearch(nums, target) {
+  let lo = 0,
+    hi = nums.length - 1
+  while (lo < hi) {
+    let mid = lo + Math.floor((hi - lo + 1) / 2)
+    if (target < nums[mid]) {
+      hi = mid - 1
     } else {
-      left = middle + 1
+      lo = mid
     }
   }
-
-  return -1
+  return nums[lo] == target ? lo : -1
 }
 
-console.log(binarySearch([1, 2, 3, 4, 33, 56, 90, 100], 102))
+console.log(binarySearch([1, 2, 3, 4, 33, 56, 90, 100], 4))
