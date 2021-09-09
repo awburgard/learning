@@ -19,3 +19,27 @@ function binarySearch(nums, target) {
 }
 
 console.log(binarySearch([1, 2, 3, 4, 33, 56, 90, 100], 4))
+
+/*
+following assumes that an api called isBadVersion is avaliable
+takes in version (n)
+=> boolean
+*/
+
+function isBadVersion(version) {
+  return version >= 2
+}
+
+function check(n) {
+  var start = 1,
+    end = n
+  while (start < end) {
+    var mid = Math.floor(start + (end - start) / 2)
+    if (isBadVersion(mid)) {
+      end = mid // look on left side of mid
+    } else {
+      start = mid + 1 // look on the right side of mid
+    }
+  }
+  return start
+}
